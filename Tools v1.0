@@ -1,0 +1,162 @@
+"""
+Project by Kisah Tegar Putra Abdi
+Saturday, Nomvember 7, 2020
+
+this is my first program. I hope you like it. 
+"""
+
+#import
+import os
+import datetime
+import time
+from prettytable import PrettyTable
+from time import sleep
+from tqdm import tqdm
+
+
+# datetime
+mylistdate = []
+today = datetime.date.today()
+mylistdate.append(today)
+
+
+def login():
+    # make database user
+    db_user={
+        'kisah': 'admin', 
+        'tegar': '1806', 
+        'putra': '2003'
+    }
+
+    # make login menu
+    os.system('cls')
+    print ("-------------------------------------")
+    print ("| This is a new day : %s    |" % mylistdate[0])
+    print ("-------------------------------------")
+    print ("|      *****LOGIN SCREEN******      |")
+    print ("-------------------------------------")
+    username = input('| Enter username: ')
+    password = input('| Enter password: ')
+    
+    # effect loading :)
+    print ("-------------------------------------")
+    print ("\nChecking data.......")
+    time.sleep(1)
+    print (".")
+    time.sleep(0.1)
+    print ("..")
+    time.sleep(1.5)
+    print ("...")
+    time.sleep(2)
+    for i in tqdm(range(3)):
+        time.sleep(0.1)
+    print ("-------------------------------------")
+
+    if username not in db_user:
+        print("The user does not exist")
+        input ("Press [Enter]: ")
+    elif db_user[username] == password:
+        print("Welcome,", username,". This is a new day : ", mylistdate[0])
+        input ("Press [Enter]: ")
+        show_menu()
+    elif db_user[username] != password:
+        print ("WRONG PASSWORD, Try again !!")
+        input ("Press [Enter]: ")
+
+
+
+def show_menu():
+    os.system('cls')
+    print ("-------------------------------------")
+    print ("| This is a new day : %s    |" % mylistdate[0])
+    print ("--------------- MENU ----------------")
+    print ("[1] schedule menu")
+    print ("[2] Coming soon")
+    print ("[3] Coming soon")
+    print ("[4] Coming soon")
+    print ("[0] Exit")
+    print ("-------------------------------------")
+    
+    menu = int(input("SELECT MENU : "))
+    print ("\n")
+
+    if menu == 1:
+        menu_jadwal()
+    elif menu == 2:
+        coming_soon()
+    elif menu == 3:
+        coming_soon()
+    elif menu == 4:
+        coming_soon()
+    elif menu == 0:
+        exit()
+    else:
+        print ("Salah pilih!")
+        input ("Press [Enter]: ")
+
+
+def coming_soon():
+    os.system('cls')
+    print ("-------------------------------------")
+    print ("| This is a new day : %s    |" % mylistdate[0])
+    print ("-------------------------------------")
+    print ("| No content in here go back soon:) |")
+    print ("-------------------------------------")
+    input ("press [Enter]: ")
+
+def menu_jadwal():
+    os.system('cls')
+    print ("-------------------------------------")
+    print ("| This is a new day : %s    |" % mylistdate[0])
+    print ("--------------- MENU ----------------")
+    print ("[1] SMK lesson schedule")
+    print ("[2] Coming soon")
+    print ("[3] Coming soon")
+    print ("[4] Coming soon")
+    print ("[0] back to menu")
+    print ("-------------------------------------")
+    
+    menu = int(input("PILIH MENU> "))
+
+    if menu == 1:
+        jadwal_mapel()
+    elif menu == 2:
+        coming_soon()
+    elif menu == 3:
+        coming_soon()
+    elif menu == 4:
+        coming_soon()
+    elif menu == 0:
+        show_menu()
+    else:
+        print ("-------------------------------------")
+        print ("------------- wrong menu ------------")
+        print ("Wrong choice!")
+        input ("Press [Enter]: ")
+        return menu_jadwal()
+
+def jadwal_mapel():
+    # table schedule
+    # here I am using the prettytable
+    # make column 
+    myTable = PrettyTable(["Hari", "Mapel ke-1", "Mepel ke-2"])
+    # clear screen
+    os.system('cls')
+    print ("-------------------------------------")
+    print ("| This is a new day : %s    |" % mylistdate[0])
+    print ("--------------- MENU ----------------")
+    # add rows
+    myTable.add_row(["Senin", "PAI", "B.Indo"])
+    myTable.add_row(["Selasa", "MTK", "PPKN"])
+    myTable.add_row(["Rabu", "AIJ", "-"])
+    myTable.add_row(["Kamis", "BM", "B.Inggris"])
+    myTable.add_row(["Jumat", "PPKWH", "-"])
+    myTable.add_row(["Senin ke-2", "TLJ", "-"])
+    myTable.add_row(["Selasa ke-2", "ASJ", "-"])
+    print (myTable)
+    input ("press [Enter]: ")
+
+# last
+if __name__ == "__main__":
+    while(True):
+        login()
